@@ -1,0 +1,20 @@
+title: Site Title
+favicon: assets/images/favicon.ico
+ogTitle: Site Title
+ogType: website
+ogDescription: Lorem Ipsum
+ogImage: assets/images/site-preview.png
+ogUrl: https://website.com
+
+email: email@sample.com
+twitterUrl: http://www.twitter.com/
+linkedInUrl: https://www.linkedin.com/
+facebookUrl: https://www.facebook.com/
+
+markdown: kramdown
+
+include: [_pages]
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - package.json
