@@ -11,11 +11,13 @@ linkedInUrl: https://www.linkedin.com/
 facebookUrl: https://www.facebook.com/
 googleAnalyticsId: ""
 markdown: kramdown
-include: [_pages]
+source: src/jekyll
+destination: dist
+include:
+  - _pages
 exclude:
   - Gemfile
   - Gemfile.lock
   - package.json
   - node_modules
   - package-lock.json
-  - vendors.js

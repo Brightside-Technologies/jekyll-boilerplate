@@ -3,12 +3,17 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "bundle exec jekyll serve",
-        "build": "bundle exec jekyll build"
+        "start": "npm run build && bundle exec jekyll serve --skip-initial-build",
+        "build": "npm run parcel && bundle exec jekyll build",
+        "parcel": "parcel build src/vendors/vendors.js --no-source-maps --out-dir src/jekyll"
     },
     "dependencies": {
-        "bootstrap": "^4.1.0",
+        "bootstrap": "^4.0.0-beta.2",
         "jquery": "^3.3.1",
         "popper.js": "^1.14.3"
+    },
+    "devDependencies": {
+        "node-sass": "^4.8.3",
+        "parcel-bundler": "^1.7.1"
     }
 }
