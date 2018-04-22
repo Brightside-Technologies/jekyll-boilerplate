@@ -5,16 +5,17 @@ ogType: website
 ogDescription: Lorem Ipsum
 ogImage: assets/images/site-preview.png
 ogUrl: https://website.com
-
 email: email@sample.com
 twitterUrl: http://www.twitter.com/
 linkedInUrl: https://www.linkedin.com/
 facebookUrl: https://www.facebook.com/
-
+googleAnalyticsId: ""
 markdown: kramdown
-
 include: [_pages]
 exclude:
   - Gemfile
   - Gemfile.lock
   - package.json
+  - node_modules
+  - package-lock.json
+  - vendors.js

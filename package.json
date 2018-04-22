@@ -5,5 +5,10 @@
     "scripts": {
         "start": "bundle exec jekyll serve",
         "build": "bundle exec jekyll build"
+    },
+    "dependencies": {
+        "bootstrap": "^4.1.0",
+        "jquery": "^3.3.1",
+        "popper.js": "^1.14.3"
     }
 }
