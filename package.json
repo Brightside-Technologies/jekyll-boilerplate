@@ -3,17 +3,18 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "npm run build && bundle exec jekyll serve --skip-initial-build",
-        "build": "npm run parcel && bundle exec jekyll build",
-        "parcel": "parcel build src/vendors/vendors.js --no-source-maps --out-dir src/jekyll"
+        "start": "bundle exec jekyll serve",
+        "build": "npm run browserify && bundle exec jekyll build",
+        "browserify":
+            "browserify -t [ browserify-css --stripComments=true src/vendors/vendors.css --output src/jekyll/vendors.bundle.css] src/vendors/vendors.js -o src/jekyll/vendors.bundle.js"
     },
     "dependencies": {
-        "bootstrap": "^4.0.0-beta.2",
+        "bootstrap": "^4.1.0",
         "jquery": "^3.3.1",
         "popper.js": "^1.14.3"
     },
     "devDependencies": {
-        "node-sass": "^4.8.3",
-        "parcel-bundler": "^1.7.1"
+        "browserify": "^16.2.0",
+        "browserify-css": "^0.14.0"
     }
 }

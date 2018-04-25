@@ -3,5 +3,4 @@ dist/
 .jekyll-cache/
 .jekyll-metadata
 node_modules
-.cache
 Thumbs.db
