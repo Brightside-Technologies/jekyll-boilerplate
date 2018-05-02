@@ -1,10 +1,10 @@
 title: Site Title
 favicon: assets/images/favicon.ico
-ogTitle: Site Title
-ogType: website
-ogDescription: Lorem Ipsum
-ogImage: assets/images/site-preview.png
-ogUrl: https://website.com
+type: website
+description: Lorem Ipsum
+keywords: Comma delimited list of words
+image: assets/images/site-preview.png
+url: https://website.com
 email: email@sample.com
 twitterUrl: http://www.twitter.com/
 linkedInUrl: https://www.linkedin.com/
