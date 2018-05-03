@@ -2,7 +2,8 @@ title: Site Title
 favicon: assets/images/favicon.ico
 type: website
 description: Lorem Ipsum
-keywords: Comma delimited list of words
+keywords: 
+  - keyword1
 image: assets/images/site-preview.png
 url: https://website.com
 email: email@sample.com
