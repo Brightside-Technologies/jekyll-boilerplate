@@ -17,7 +17,6 @@ markdown: kramdown
 source: src/jekyll
 destination: jekyll-dist
 source: src/jekyll
-destination: dist
 include:
   - _pages
 plugins:
