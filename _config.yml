@@ -4,6 +4,8 @@ type: website
 description: Lorem Ipsum
 keywords: 
   - keyword1
+developer: Brightside Tech
+developerUrl: '#'
 image: assets/images/site-preview.png
 url: https://website.com
 email: email@sample.com
@@ -12,6 +14,8 @@ linkedInUrl: https://www.linkedin.com/
 facebookUrl: https://www.facebook.com/
 googleAnalyticsId: ""
 markdown: kramdown
+source: src/jekyll
+destination: jekyll-dist
 source: src/jekyll
 destination: dist
 include:
