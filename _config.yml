@@ -14,7 +14,6 @@ linkedInUrl: https://www.linkedin.com/
 facebookUrl: https://www.facebook.com/
 googleAnalyticsId: ""
 markdown: kramdown
-source: src/jekyll
 destination: jekyll-dist
 source: src/jekyll
 include:
