@@ -15,12 +15,14 @@ Jekyll boilerplate for static websites deployed to Netlify. If not using Netlify
  * Includes Open Graph, Twitter, and SEO tags
  * Google Analytics script
  * Emoji support via `jemoji` jekyll plugin
+ * Cross-browser line-clamping using pure css
   
   
   # TODO
   * Add css purify
-  * Strip vendor comments (gulp-strip-comments)
-  * Create multiple versions of images for `srcset` (gulp-responsive)
+  * ~Strip vendor comments (gulp-strip-comments)~ This is done by the minification process.
+  * Add support for `srcset` andn `image-set()` with appropriate fallbacks as needed 
+    * Currently in development. Solution includes gulp-responsive to generate different versions of image and a jekyll include as a template to generate the `<img` tage or `div` with in-line `image-set()` style for background images
   * Add site map
   * Add oEmbed support ?
   
