@@ -47,3 +47,23 @@ $line-clamp-spacer: 1.5;
     -webkit-line-clamp: 5;
     height: calc(1em * #{$line-clamp-spacer} * 5);
 }
+.line-clamp-6 {
+    -webkit-line-clamp: 6;
+    height: calc(1em * #{$line-clamp-spacer} * 6);
+}
+.line-clamp-7 {
+    -webkit-line-clamp: 7;
+    height: calc(1em * #{$line-clamp-spacer} * 7);
+}
+.line-clamp-8 {
+    -webkit-line-clamp: 8;
+    height: calc(1em * #{$line-clamp-spacer} * 8);
+}
+.line-clamp-9 {
+    -webkit-line-clamp: 9;
+    height: calc(1em * #{$line-clamp-spacer} * 9);
+}
+.line-clamp-10 {
+    -webkit-line-clamp: 10;
+    height: calc(1em * #{$line-clamp-spacer} * 10);
+}
