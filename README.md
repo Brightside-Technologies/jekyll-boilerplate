@@ -25,5 +25,6 @@ Opiniated Jekyll boilerplate for static websites deployed to Netlify. If not usi
   * Add support for `srcset` andn `image-set()` with appropriate fallbacks as needed 
     * Currently in development. Solution includes `gulp-responsive` to generate different versions of image and a jekyll include as a template to generate the `<img>` tage or `div` with in-line `image-set()` style for background images
   * Add site map
+  * Add `normalize.css`
   * Explore oEmbed support
   
