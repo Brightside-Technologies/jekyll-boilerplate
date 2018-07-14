@@ -26,8 +26,6 @@ Opiniated Jekyll boilerplate for static websites deployed to Netlify. If not usi
 -   Remove dead css with `css-purify`
 -   Add cache busting to build script
 -   ~Strip vendor comments (gulp-strip-comments)~ This is done by the minification process.
--   Add support for `srcset` andn `image-set()` with appropriate fallbacks as needed
-    -   Currently in development.
 -   Add site map
 -   Add optional rss feed
 -   Explore oEmbed support
