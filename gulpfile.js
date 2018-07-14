@@ -157,3 +157,8 @@ gulp.task("responsive-images", ["clean-responsive-images"], function() {
 gulp.task("copy-assets", function() {
     return gulp.src("jekyll-dist/assets/**/*").pipe(gulp.dest("dist/assets"));
 });
+
+gulp.task("copy-root-files", function() {
+    var rootFiles = ["jekyll-dist/sitemap.xml", "jekyll-dist/robots.txt"];
+    return gulp.src(rootFiles).pipe(gulp.dest("dist"));
+});
