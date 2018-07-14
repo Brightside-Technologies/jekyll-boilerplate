@@ -1,0 +1,33 @@
+{% assign urlSplitArray = include.url | split: "/" %}
+{% capture fileName %} {{urlSplitArray | last }} {% endcapture %}
+{% assign fileNameSplitArray = fileName | strip | split:"." %}
+{%- capture basename -%} {{fileNameSplitArray | first}} {%- endcapture -%}
+
+{% assign responsive_images = site.static_files | where: "responsive", true %}
+{% assign imageSetUrls = "" | split: ',' %}
+{% assign imageSetItem = "" %}
+{% assign default = "" %}
+
+{% capture imgSet %}
+    {% for img in responsive_images %}
+        {% if img.path contains basename %}
+
+            {% if img.path contains '@1x' %}
+                {% assign imageSetItem = {{img.path | absolute_url | prepend: 'url(' | append: ') 1x'}} %} 
+            {% elsif img.path contains '@2x' %}
+                {% assign imageSetItem = {{img.path | absolute_url | prepend: 'url(' | append: ') 2x'}} %}
+                {% assign default = {{imageSetItem | replace: " 2x", ""}} %}
+            {% elsif img.path contains '@3x' %}
+                {% assign imageSetItem = {{img.path | absolute_url | prepend: 'url(' | append: ') 3x'}} %}
+            {% else %}
+                {% assign imageSetItem = {{img.path | absolute_url | prepend: 'url(' | append: ') 2x'}} %}
+            {% endif %}
+
+            {% assign imageSetUrls = imageSetUrls | push: imageSetItem %}
+
+        {% endif %}
+    {% endfor %}
+    {{imageSetUrls | join: ', '}}
+{% endcapture %}
+
+<div class="{{include.class}}" style="background-image: {{default}}; background-image: image-set({{imgSet | strip}});"></div>

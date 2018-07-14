@@ -1,0 +1,35 @@
+
+{% assign urlSplitArray = include.url | split: "/" %}
+{% capture fileName %} {{urlSplitArray | last }} {% endcapture %}
+{% assign fileNameSplitArray = fileName | strip | split:"." %}
+{%- capture basename -%} {{fileNameSplitArray | first}} {%- endcapture -%}
+
+{% assign responsive_images = site.static_files | where_exp: "file", "file.name contains 'responsive'" %}
+{% assign srcSetUrls = "" | split: ',' %}
+{% assign srcSetItem = "" %}
+{% assign default = "" %}
+
+{% capture srcset %}
+    {% for img in responsive_images %}
+        {% if img.path contains basename %}
+            
+            {% if img.path contains '@1x' %}
+                {% assign srcSetItem = {{img.path | absolute_url | append: ' 300w'}} %} 
+            {% elsif img.path contains '@2x' %}
+                {% assign srcSetItem = {{img.path | absolute_url | append: ' 600w'}} %}
+                {% assign default = {{srcSetItem | replace: " 600w", ""}} %}
+            {% elsif img.path contains '@3x' %}
+                {% assign srcSetItem = {{img.path | absolute_url | append: ' 900w'}} %}
+            {% else %}
+                {% assign srcSetItem = {{img.path | absolute_url | append: ' 600w'}} %}
+            {% endif %}
+
+            {% assign srcSetUrls = srcSetUrls | push: srcSetItem %}
+
+        {% endif %}
+    {% endfor %}
+    {{srcSetUrls | join: ', '}}
+{% endcapture %}
+
+
+<img class="{{ include.class }}" src="{{ default | absolute_url }}" alt="{{ include.alt }}" srcset="{{ srcset | strip }}" sizes="(min-width: 300px) 50vw, 100vw" width="300">
