@@ -20,6 +20,7 @@ include:
   - _pages
 plugins:
   - jemoji
+  - jekyll-sitemap
 exclude:
   - Gemfile
   - Gemfile.lock

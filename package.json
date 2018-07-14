@@ -11,7 +11,9 @@
         "minify:images": "gulp minify:images",
         "minify:js": "gulp minify:js",
         "minify:css": "gulp minify:css",
-        "minify:html": "gulp minify:html"
+        "minify:html": "gulp minify:html",
+        "generate:responsive-images": "gulp responsive-images",
+        "copy:assets": "gulp copy-assets"
     },
     "dependencies": {
         "bootstrap": "^4.1.0",
