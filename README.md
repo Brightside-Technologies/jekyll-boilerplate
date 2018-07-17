@@ -26,6 +26,9 @@ Opiniated Jekyll boilerplate for static websites deployed to Netlify. If not usi
 
 # TODO
 
+-   Resoponsive-images
+    -   add parameter for default size.
+    -   Can `{%include%}` return a string only (to interpolate in `src` or inline style)?
 -   Remove dead css with `css-purify`
 -   ~Strip vendor comments (gulp-strip-comments)~ This is done by the minification process.
 -   Add optional rss feed
