@@ -8,17 +8,29 @@ var autoprefixer = require("gulp-autoprefixer");
 var htmlmin = require("gulp-htmlmin");
 var inject = require("gulp-inject");
 var responsive = require("gulp-responsive");
+var cachebust = require("gulp-buster");
 var del = require("del");
 var readYaml = require("read-yaml");
 var series = require("stream-series");
 
-gulp.task("clean", function() {
+var cacheBustingOptions = {
+    fileName: "cache-bust.json",
+    length: 5,
+    relativePath: "jekyll-dist"
+};
+
+gulp.task("clean:prebuild", function() {
     return del(["dist/**/*", "!dist"]);
+});
+
+gulp.task("clean:postbuild", function() {
+    var filesToClean = ["dist/*.min.{css,js}", "dist/*.json"];
+    return del(filesToClean);
 });
 
 gulp.task("minify:images", function() {
     return gulp
-        .src("jekyll-dist/assets/images/*")
+        .src("jekyll-dist/assets/**/*")
         .pipe(
             imagemin(
                 [
@@ -32,22 +44,24 @@ gulp.task("minify:images", function() {
                 { verbose: true }
             )
         )
-        .pipe(gulp.dest("dist/assets/images"));
+        .pipe(gulp.dest("dist/assets"));
 });
 
 gulp.task("minify:js", function() {
+    var hashes = require("./" + path.join("dist", cacheBustingOptions.fileName));
     return gulp
         .src("jekyll-dist/*.js")
         .pipe(uglify())
         .pipe(
             rename(function(path) {
-                path.basename += ".min";
+                path.basename = path.basename + ".min" + "." + hashes[path.basename + path.extname];
             })
         )
         .pipe(gulp.dest("dist"));
 });
 
 gulp.task("minify:css", function() {
+    var hashes = require("./" + path.join("dist", cacheBustingOptions.fileName));
     return gulp
         .src("jekyll-dist/*.css")
         .pipe(
@@ -59,7 +73,7 @@ gulp.task("minify:css", function() {
         .pipe(cleanCss())
         .pipe(
             rename(function(path) {
-                path.basename += ".min";
+                path.basename = path.basename + ".min" + "." + hashes[path.basename + path.extname];
             })
         )
         .pipe(gulp.dest("dist"));
@@ -67,7 +81,7 @@ gulp.task("minify:css", function() {
 
 gulp.task("minify:html", function() {
     return gulp
-        .src("jekyll-dist/**/*.html")
+        .src("jekyll-dist/*.html")
         .pipe(htmlmin({ collapseWhitespace: true, minifyJs: true, minifyCss: true }))
         .pipe(gulp.dest("dist"));
 });
@@ -85,7 +99,7 @@ gulp.task("inject", function() {
             var vendorsStream = gulp.src(["dist/vendors.*"], { read: false });
             var siteStream = gulp.src(["dist/site.*"], { read: false });
             return gulp
-                .src("dist/**/*.html")
+                .src("dist/*.html")
                 .pipe(
                     inject(series(vendorsStream, siteStream), {
                         relative: true,
@@ -99,11 +113,11 @@ gulp.task("inject", function() {
         });
 });
 
-gulp.task("clean-responsive-images", function() {
+gulp.task("responsive-images:clean", function() {
     return del(["src/jekyll/assets/images/**/*.responsive.*"]);
 });
 
-gulp.task("responsive-images", ["clean-responsive-images"], function() {
+gulp.task("responsive-images", ["responsive-images:clean"], function() {
     return gulp
         .src("src/jekyll/assets/images/*.{jpg,png}")
         .pipe(
@@ -154,11 +168,18 @@ gulp.task("responsive-images", ["clean-responsive-images"], function() {
         .pipe(gulp.dest("src/jekyll/assets/images"));
 });
 
-gulp.task("copy-assets", function() {
+gulp.task("copy:assets", function() {
     return gulp.src("jekyll-dist/assets/**/*").pipe(gulp.dest("dist/assets"));
 });
 
-gulp.task("copy-root-files", function() {
+gulp.task("copy:root-files", function() {
     var rootFiles = ["jekyll-dist/sitemap.xml", "jekyll-dist/robots.txt"];
     return gulp.src(rootFiles).pipe(gulp.dest("dist"));
+});
+
+gulp.task("get-hash", function() {
+    return gulp
+        .src("jekyll-dist/*.{css,js}")
+        .pipe(cachebust(cacheBustingOptions))
+        .pipe(gulp.dest("dist"));
 });

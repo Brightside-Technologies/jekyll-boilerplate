@@ -20,13 +20,13 @@ Opiniated Jekyll boilerplate for static websites deployed to Netlify. If not usi
 -   Includes `normalize.css`
 -   Responsive images
     -   Solution includes `gulp-responsive` to generate different versions of images and a jekyll include file to abstract the functionality into a reusable block to generate an `<img>` with `srcset` or `div` with in-line `image-set()` style for background images.
--   Auto-generates `sitemap.xml` via `jekyll-sitemap`
+-   Auto-generated `sitemap.xml` via `jekyll-sitemap`
+-   Cache busting through `gulp-buster`
 -   Includes `robots.txt`
 
 # TODO
 
 -   Remove dead css with `css-purify`
--   Add cache busting to build script
 -   ~Strip vendor comments (gulp-strip-comments)~ This is done by the minification process.
 -   Add optional rss feed
 -   Explore oEmbed support

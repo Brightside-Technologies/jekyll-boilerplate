@@ -5,17 +5,19 @@
     "scripts": {
         "start": "bundle exec jekyll serve",
         "jekyll": "npm run browserify && bundle exec jekyll build",
-        "build": "gulp clean && npm run generate:responsive-images && npm run jekyll && npm run copy && npm run minify && gulp inject",
+        "build": "npm run clean:prebuild && npm run responsive-images && npm run jekyll && npm run copy && gulp get-hash && npm run minify && gulp inject && npm run clean:postbuild ",
         "browserify": "browserify -t [ browserify-css --stripComments=true src/vendors/vendors.css --output src/jekyll/vendors.bundle.css] src/vendors/vendors.js -o src/jekyll/vendors.bundle.js",
-        "minify": "npm run minify:js && npm run minify:css && npm run minify:html",
+        "clean:prebuild": "gulp clean:prebuild",
+        "clean:postbuild": "gulp clean:postbuild",
         "minify:images": "gulp minify:images",
         "minify:js": "gulp minify:js",
         "minify:css": "gulp minify:css",
         "minify:html": "gulp minify:html",
-        "generate:responsive-images": "gulp responsive-images",
+        "minify": "npm run minify:js & npm run minify:css & npm run minify:html",
+        "responsive-images": "gulp responsive-images",
         "copy": "npm run copy:assets & npm run copy:root-files",
-        "copy:root-files": "gulp copy-root-files",
-        "copy:assets": "gulp copy-assets"
+        "copy:root-files": "gulp copy:root-files",
+        "copy:assets": "gulp copy:assets"
     },
     "dependencies": {
         "bootstrap": "^4.1.0",
@@ -29,11 +31,13 @@
         "del": "^3.0.0",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^5.0.0",
+        "gulp-buster": "^1.1.0",
         "gulp-clean-css": "^3.9.4",
         "gulp-htmlmin": "^4.0.0",
         "gulp-imagemin": "^4.1.0",
         "gulp-inject": "^4.3.2",
         "gulp-rename": "^1.2.3",
+        "gulp-responsive": "^2.10.0",
         "gulp-uglify": "^3.0.0",
         "read-yaml": "^1.1.0",
         "stream-series": "^0.1.1"
