@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 //const Dotenv = require("dotenv-webpack");
@@ -47,6 +48,17 @@ module.exports = {
         })
     ],
     optimization: {
-        minimizer: [new OptimizeCSSAssetsPlugin({})]
+        minimizer: [
+            new OptimizeCSSAssetsPlugin({}),
+            new UglifyJsPlugin({
+                parallel: true,
+                sourceMap: true,
+                uglifyOptions: {
+                    compress: {
+                        inline: false
+                    }
+                }
+            })
+        ]
     }
 };
