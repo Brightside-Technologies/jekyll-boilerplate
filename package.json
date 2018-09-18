@@ -5,19 +5,7 @@
     "scripts": {
         "start": "bundle exec jekyll serve",
         "jekyll": "npm run browserify && bundle exec jekyll build",
-        "build": "npm run clean:prebuild && npm run responsive-images && npm run jekyll && npm run copy && gulp get-hash && npm run minify && gulp inject && npm run clean:postbuild ",
-        "browserify": "browserify -t [ browserify-css --stripComments=true src/vendors/vendors.css --output src/jekyll/vendors.bundle.css] src/vendors/vendors.js -o src/jekyll/vendors.bundle.js",
-        "clean:prebuild": "gulp clean:prebuild",
-        "clean:postbuild": "gulp clean:postbuild",
-        "minify:images": "gulp minify:images",
-        "minify:js": "gulp minify:js",
-        "minify:css": "gulp minify:css",
-        "minify:html": "gulp minify:html",
-        "minify": "npm run minify:js & npm run minify:css & npm run minify:html",
-        "responsive-images": "gulp responsive-images",
-        "copy": "npm run copy:assets & npm run copy:root-files",
-        "copy:root-files": "gulp copy:root-files",
-        "copy:assets": "gulp copy:assets"
+        "build": "webpack && bundle exec jekyll build"
     },
     "dependencies": {
         "bootstrap": "^4.1.0",
@@ -26,20 +14,25 @@
         "popper.js": "^1.14.3"
     },
     "devDependencies": {
-        "browserify": "^16.2.0",
-        "browserify-css": "^0.14.0",
-        "del": "^3.0.0",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^5.0.0",
-        "gulp-buster": "^1.1.0",
-        "gulp-clean-css": "^3.9.4",
-        "gulp-htmlmin": "^4.0.0",
-        "gulp-imagemin": "^4.1.0",
-        "gulp-inject": "^4.3.2",
-        "gulp-rename": "^1.2.3",
-        "gulp-responsive": "^2.10.0",
-        "gulp-uglify": "^3.0.0",
-        "read-yaml": "^1.1.0",
-        "stream-series": "^0.1.1"
+        "@babel/cli": "^7.1.0",
+        "@babel/core": "^7.1.0",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/preset-env": "^7.1.0",
+        "autoprefixer": "^9.1.5",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-loader": "^8.0.2",
+        "clean-webpack-plugin": "^0.1.19",
+        "copy-webpack-plugin": "^4.5.2",
+        "css-loader": "^1.0.0",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.4.2",
+        "node-sass": "^4.9.3",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.0",
+        "webpack": "^4.19.1",
+        "webpack-cli": "^3.1.0"
     }
 }

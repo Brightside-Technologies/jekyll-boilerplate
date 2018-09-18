@@ -2,10 +2,10 @@ title: Site Title
 favicon: assets/images/favicon.ico
 type: website
 description: Lorem Ipsum
-keywords: 
-  - keyword1
+keywords:
+    - keyword1
 developer: Brightside Tech
-developerUrl: '#'
+developerUrl: "#"
 image: assets/images/site-preview.png
 url: https://website.com
 email: email@sample.com
@@ -14,17 +14,10 @@ linkedInUrl: https://www.linkedin.com/
 facebookUrl: https://www.facebook.com/
 googleAnalyticsId: ""
 markdown: kramdown
-destination: jekyll-dist
-source: src/jekyll
+destination: dist
+source: root/jekyll
 include:
-  - _pages
+    - _pages
 plugins:
-  - jemoji
-  - jekyll-sitemap
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - package.json
-  - node_modules
-  - package-lock.json
-  - src/vendors
+    - jemoji
+    - jekyll-sitemap
