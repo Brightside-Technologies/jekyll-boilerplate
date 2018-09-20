@@ -1,71 +1,45 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const PurifyCSSPlugin = require("purifycss-webpack");
-const glob = require("glob");
-
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-//const Dotenv = require("dotenv-webpack");
-
-module.exports = {
-    entry: "./root/src/site.js",
-    output: {
-        filename: "site.[contentHash].js",
-        path: path.resolve(__dirname, "root/jekyll")
+{
+    "name": "jekyll-boilerplate",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "bundle exec jekyll serve",
+        "jekyll": "npm run browserify && bundle exec jekyll build",
+        "build": "webpack && bundle exec jekyll build"
     },
-    mode: "production",
-    devtool: "source-map",
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"],
-                        plugins: ["@babel/plugin-proposal-class-properties"]
-                    }
-                }
-            },
-            {
-                test: /\.scss$/,
-                use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
-            }
-        ]
+    "dependencies": {
+        "bootstrap": "^4.1.0",
+        "jquery": "^3.3.1",
+        "normalize.css": "^8.0.0",
+        "popper.js": "^1.14.3"
     },
-    plugins: [
-        new CleanWebpackPlugin(["root/jekyll/*.js", "root/jekyll/*.css", "root/jekyll/*.map"], {}),
-        new MiniCssExtractPlugin({
-            filename: "site.[contentHash].min.css"
-        }),
-        new PurifyCSSPlugin({
-            // Give paths to parse for rules. These should be absolute!
-            paths: glob.sync(path.join(__dirname, "root/jekyll/**/*.html"))
-        }),
-        new HtmlWebpackPlugin({
-            inject: true,
-            //hash: true,
-            template: "./root/src/layout.tmpl.html",
-            filename: path.resolve(__dirname, "root/jekyll/_layouts/layout.html")
-        })
-    ],
-    optimization: {
-        minimizer: [
-            new OptimizeCSSAssetsPlugin({}),
-            new UglifyJsPlugin({
-                parallel: true,
-                sourceMap: true,
-                uglifyOptions: {
-                    compress: {
-                        inline: false
-                    }
-                }
-            })
-        ]
+    "devDependencies": {
+        "@babel/cli": "^7.1.0",
+        "@babel/core": "^7.1.0",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/preset-env": "^7.1.0",
+        "autoprefixer": "^9.1.5",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-loader": "^8.0.2",
+        "clean-webpack-plugin": "^0.1.19",
+        "copy-webpack-plugin": "^4.5.2",
+        "css-loader": "^1.0.0",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "glob": "^7.1.3",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.4.2",
+        "node-sass": "^4.9.3",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "postcss-loader": "^3.0.0",
+        "purify-css": "^1.2.5",
+        "purifycss-webpack": "^0.7.0",
+        "responsive-loader": "^1.1.0",
+        "sass-loader": "^7.1.0",
+        "sharp": "^0.20.8",
+        "style-loader": "^0.23.0",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "webpack": "^4.19.1",
+        "webpack-cli": "^3.1.0"
     }
-};
+}
