@@ -7,8 +7,5 @@ import "bootstrap";
 
 import greet from "./greet";
 
-const responsiveImage = require("./assets/images/sample.jpg");
-console.log("responsiveImage", responsiveImage);
-
 const greetingMessage = greet("World");
 console.log(greetingMessage);
