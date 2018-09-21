@@ -42,7 +42,8 @@ module.exports = {
                 options: {
                     sizes: [500, 750, 1000],
                     adapter: require("responsive-loader/sharp"),
-                    name: 'assets/images/[name]-[hash]-[width].[ext]'
+                    name: "assets/images/[name]-[hash]-[width].[ext]",
+                    placeholder: true
                 }
             }
             // {
@@ -62,7 +63,6 @@ module.exports = {
             filename: "site.[contentHash].min.css"
         }),
         new PurifyCSSPlugin({
-            // Give paths to parse for rules. These should be absolute!
             paths: glob.sync(path.join(__dirname, "root/jekyll/**/*.html"))
         }),
         new HtmlWebpackPlugin({

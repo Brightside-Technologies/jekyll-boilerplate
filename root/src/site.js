@@ -7,7 +7,7 @@ import "bootstrap";
 
 import greet from "./greet";
 
-const responsiveImage = require("./assets/images/Sphynx.jpg?sizes[]=500,sizes[]=750,sizes[]=1000");
+const responsiveImage = require("./assets/images/sample.jpg");
 console.log("responsiveImage", responsiveImage);
 
 const greetingMessage = greet("World");
