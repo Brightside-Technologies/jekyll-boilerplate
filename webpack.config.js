@@ -9,10 +9,11 @@ const glob = require("glob");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-//const Dotenv = require("dotenv-webpack");
+//const Dotenv = require("dotenv-webpack")
 
 module.exports = {
-    entry: "./root/src/site.js",
+    entry: "./site.js",
+    context: path.resolve(__dirname, "root/src"),
     output: {
         filename: "site.[contentHash].js",
         path: path.resolve(__dirname, "root/jekyll")
@@ -68,8 +69,20 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: true,
             //hash: true,
-            template: "./root/src/layout.tmpl.html",
+            template: "./templates/layout.tmpl.html",
             filename: path.resolve(__dirname, "root/jekyll/_layouts/layout.html")
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            //hash: true,
+            template: "./templates/images-metadata.tmpl.js",
+            filename: path.resolve(__dirname, "root/jekyll/_data/images-metadata.json")
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            //hash: true,
+            template: "./templates/srcset.tmpl.js",
+            filename: path.resolve(__dirname, "root/jekyll/_includes/img_srcset.html")
         })
     ],
     optimization: {
