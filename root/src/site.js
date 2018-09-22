@@ -1,7 +1,7 @@
 require("./scss/site.scss");
-import { $, jQuery } from "jquery";
+import $ from "jquery";
+window.jQuery = $;
 window.$ = $;
-window.jQuery = jQuery;
 require("popper.js");
 import "bootstrap";
 
