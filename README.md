@@ -1,4 +1,4 @@
-Opiniated Jekyll boilerplate for static websites deployed to Netlify. If not using Netlify, disregard `netlify.toml`.
+Opinionated Jekyll boilerplate for static websites deployed to Netlify. If not using Netlify, disregard `netlify.toml`.
 
 # Features
 -  Supports ES6
