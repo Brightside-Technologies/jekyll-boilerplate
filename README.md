@@ -16,7 +16,6 @@ Opinionated Jekyll boilerplate for static websites deployed to Netlify. If not u
 -   Cross-browser line-clamping using pure css
 -   Includes `normalize.css`
 -   Auto-generated `sitemap.xml` via `jekyll-sitemap`
--   Cache busting through `gulp-buster`
 -   Includes `robots.txt`
 
 # TODO
